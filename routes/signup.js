@@ -1,14 +1,13 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import express from 'express';
-const signupRoute = express.Router();
 import dotenv from 'dotenv';
 dotenv.config();
 
+const signupRoute = express.Router();
 
 signupRoute.post('/', async (req, res) => {
   const { name, email, password } = req.body;
-
 
   try {
     const existingUser = await User.findOne({ email });
@@ -17,7 +16,8 @@ signupRoute.post('/', async (req, res) => {
       return res.status(400).send(`${email} is already registered`);
     }
 
-    const salt = await bcrypt.genSalt();
+    const saltRounds = 10; // Specify the number of salt rounds
+    const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     await User.create({ name, email, password: hashedPassword });
