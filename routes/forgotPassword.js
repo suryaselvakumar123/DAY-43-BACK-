@@ -1,6 +1,9 @@
 import User from "../models/user.js";
 import nodemailer from "nodemailer";
 import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const forgotPasswordRoute = express.Router();
 

@@ -2,6 +2,9 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const loginRoute = express.Router();
 loginRoute.post('/', async (req, res) => {

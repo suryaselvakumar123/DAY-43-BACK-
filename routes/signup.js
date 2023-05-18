@@ -2,6 +2,9 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import express from 'express';
 const signupRoute = express.Router();
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 signupRoute.post('/', async (req, res) => {
   const { name, email, password } = req.body;
